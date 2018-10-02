@@ -1,7 +1,8 @@
 # GetForegroundActivity
 Using AccessibilityService or UsageStatsManager
 
-AccessibilityService
+# AccessibilityService
+
 Warning: Google Play violation
 
 Google has threatened to remove apps from the Play Store if they use accessibility services for non-accessibility purposes. However, this is reportedly being reconsidered.
@@ -24,7 +25,7 @@ Disadvantages
     When a user tries to enable the AccessibilityService, they can't press the OK button if an app has placed an overlay on the screen. Some apps that do this are Velis Auto Brightness and Lux. This can be confusing because the user might not know why they can't press the button or how to work around it.
     The AccessibilityService won't know the current activity until the first change of activity.
 
-UsageStatsManager
+# UsageStatsManager
 
     This technique uses the UsageStatsManager API introduced in Android 5.0 to gain access to a device’s usage history and statistics.
     The malware queries the usage statistics of all the applications for the past two seconds and then computes the most recent activity. The malware requests the user to grant a system-level permission, “android.permission.PACKAGE_USAGE_STATS", to use this API.
