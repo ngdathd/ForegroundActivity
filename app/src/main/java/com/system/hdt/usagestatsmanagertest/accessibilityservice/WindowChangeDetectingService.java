@@ -1,4 +1,4 @@
-package com.example.hdt.usagestatsmanagertest.accessibilityservice;
+package com.system.hdt.usagestatsmanagertest.accessibilityservice;
 
 import android.accessibilityservice.AccessibilityService;
 import android.content.ComponentName;
@@ -7,8 +7,8 @@ import android.content.pm.PackageManager;
 import android.view.accessibility.AccessibilityEvent;
 import android.widget.Toast;
 
-import com.example.hdt.usagestatsmanagertest.R;
-import com.example.hdt.usagestatsmanagertest.Utils;
+import com.system.hdt.usagestatsmanagertest.R;
+import com.system.hdt.usagestatsmanagertest.Utils;
 
 import static android.view.accessibility.AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED;
 

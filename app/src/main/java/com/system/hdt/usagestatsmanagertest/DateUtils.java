@@ -1,4 +1,4 @@
-package com.example.hdt.usagestatsmanagertest;
+package com.system.hdt.usagestatsmanagertest;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;

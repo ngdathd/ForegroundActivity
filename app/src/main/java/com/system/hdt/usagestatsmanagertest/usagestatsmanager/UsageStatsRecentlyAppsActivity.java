@@ -1,4 +1,4 @@
-package com.example.hdt.usagestatsmanagertest.usagestatsmanager;
+package com.system.hdt.usagestatsmanagertest.usagestatsmanager;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,11 +10,11 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.example.hdt.usagestatsmanagertest.R;
-import com.example.hdt.usagestatsmanagertest.UsageContract;
-import com.example.hdt.usagestatsmanagertest.UsagePresenter;
-import com.example.hdt.usagestatsmanagertest.UsageStatAdapter;
-import com.example.hdt.usagestatsmanagertest.UsageStatsWrapper;
+import com.system.hdt.usagestatsmanagertest.R;
+import com.system.hdt.usagestatsmanagertest.UsageContract;
+import com.system.hdt.usagestatsmanagertest.UsagePresenter;
+import com.system.hdt.usagestatsmanagertest.UsageStatAdapter;
+import com.system.hdt.usagestatsmanagertest.UsageStatsWrapper;
 
 import java.util.List;
 

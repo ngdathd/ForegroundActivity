@@ -1,4 +1,4 @@
-package com.example.hdt.usagestatsmanagertest;
+package com.system.hdt.usagestatsmanagertest;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;

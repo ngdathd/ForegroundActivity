@@ -1,4 +1,4 @@
-package com.example.hdt.usagestatsmanagertest;
+package com.system.hdt.usagestatsmanagertest;
 
 import android.app.AppOpsManager;
 import android.app.usage.UsageStats;

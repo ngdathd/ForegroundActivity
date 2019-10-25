@@ -1,4 +1,4 @@
-package com.example.hdt.usagestatsmanagertest;
+package com.system.hdt.usagestatsmanagertest;
 
 import android.annotation.TargetApi;
 import android.app.usage.UsageEvents;

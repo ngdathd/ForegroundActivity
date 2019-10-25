@@ -1,11 +1,11 @@
-package com.example.hdt.usagestatsmanagertest.usagestatsmanager;
+package com.system.hdt.usagestatsmanagertest.usagestatsmanager;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
-import com.example.hdt.usagestatsmanagertest.R;
+import com.system.hdt.usagestatsmanagertest.R;
 
 public class UsageStatsServiceActivity extends AppCompatActivity {
     @Override
