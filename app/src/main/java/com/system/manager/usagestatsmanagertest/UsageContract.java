@@ -1,4 +1,4 @@
-package com.system.hdt.usagestatsmanagertest;
+package com.system.manager.usagestatsmanagertest;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.system.hdt.usagestatsmanagertest;
+package com.system.manager.usagestatsmanagertest;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

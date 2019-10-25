@@ -1,4 +1,4 @@
-package com.system.hdt.usagestatsmanagertest.accessibilityservice;
+package com.system.manager.usagestatsmanagertest.accessibilityservice;
 
 import android.content.ComponentName;
 import android.content.Intent;
@@ -14,8 +14,8 @@ import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.Toast;
 
-import com.system.hdt.usagestatsmanagertest.R;
-import com.system.hdt.usagestatsmanagertest.Utils;
+import com.system.manager.usagestatsmanagertest.R;
+import com.system.manager.usagestatsmanagertest.Utils;
 
 public class WindowChangeDetectingActivity extends AppCompatActivity {
     public static final String TAG = WindowChangeDetectingActivity.class.getSimpleName();

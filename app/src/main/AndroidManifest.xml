@@ -1,35 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.system.hdt.usagestatsmanagertest">
+    package="com.system.manager.usagestatsmanagertest">
 
     <uses-permission
         android:name="android.permission.PACKAGE_USAGE_STATS"
         tools:ignore="ProtectedPermissions" />
 
     <application
-        android:name="com.system.hdt.usagestatsmanagertest.App"
+        android:name="com.system.manager.usagestatsmanagertest.App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.system.hdt.usagestatsmanagertest.usagestatsmanager.UsageStatsRecentlyAppsActivity">
+        <activity android:name="com.system.manager.usagestatsmanagertest.usagestatsmanager.UsageStatsRecentlyAppsActivity">
             <!--<intent-filter>-->
             <!--<action android:name="android.intent.action.MAIN" />-->
 
             <!--<category android:name="android.intent.category.LAUNCHER" />-->
             <!--</intent-filter>-->
         </activity>
-        <activity android:name="com.system.hdt.usagestatsmanagertest.usagestatsmanager.UsageStatsServiceActivity">
+        <activity android:name="com.system.manager.usagestatsmanagertest.usagestatsmanager.UsageStatsServiceActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.system.hdt.usagestatsmanagertest.accessibilityservice.WindowChangeDetectingActivity">
+        <activity android:name="com.system.manager.usagestatsmanagertest.accessibilityservice.WindowChangeDetectingActivity">
             <!--<intent-filter>-->
             <!--<action android:name="android.intent.action.MAIN" />-->
 
@@ -37,9 +37,9 @@
             <!--</intent-filter>-->
         </activity>
 
-        <service android:name="com.system.hdt.usagestatsmanagertest.usagestatsmanager.UsageStatsService" />
+        <service android:name="com.system.manager.usagestatsmanagertest.usagestatsmanager.UsageStatsService" />
         <service
-            android:name="com.system.hdt.usagestatsmanagertest.accessibilityservice.WindowChangeDetectingService"
+            android:name="com.system.manager.usagestatsmanagertest.accessibilityservice.WindowChangeDetectingService"
             android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
             <intent-filter>
                 <action android:name="android.accessibilityservice.AccessibilityService" />

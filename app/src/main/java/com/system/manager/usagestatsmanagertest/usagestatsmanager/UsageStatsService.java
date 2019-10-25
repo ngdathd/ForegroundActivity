@@ -1,4 +1,4 @@
-package com.system.hdt.usagestatsmanagertest.usagestatsmanager;
+package com.system.manager.usagestatsmanagertest.usagestatsmanager;
 
 import android.app.Service;
 import android.content.Intent;
@@ -6,7 +6,7 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 
-import com.system.hdt.usagestatsmanagertest.Utils;
+import com.system.manager.usagestatsmanagertest.Utils;
 
 public class UsageStatsService extends Service {
     @Nullable
