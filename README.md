@@ -23,5 +23,6 @@ Google has threatened to remove apps from the Play Store if they use accessibili
 
 ## UsageStatsManager
 * This technique uses the UsageStatsManager API introduced in Android 5.0 to gain access to a device’s usage history and statistics.
-* The malware queries the usage statistics of all the applications for the past two seconds and then computes the most recent activity. * The malware requests the user to grant a system-level permission, “android.permission.PACKAGE_USAGE_STATS", to use this API.
+* The malware queries the usage statistics of all the applications for the past two seconds and then computes the most recent activity.
+* The malware requests the user to grant a system-level permission, “android.permission.PACKAGE_USAGE_STATS", to use this API.
 * This permission can only be granted through the Settings application. In order to overcome this, the malware uses social engineering by programmatically starting the usage access permission activity while masquerading as Google Chrome by mimicking the app’s icon and name.
