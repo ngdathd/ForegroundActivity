@@ -1,5 +1,5 @@
 ## ForegroundActivity
-Get foreground activty using AccessibilityService or UsageStatsManager
+Get foreground activity using AccessibilityService or UsageStatsManager
 
 ## AccessibilityService
 
