@@ -2,7 +2,7 @@ package com.system.manager.foregroundactivity;
 
 import android.app.usage.UsageStats;
 import android.graphics.drawable.Drawable;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 public final class UsageStatsWrapper implements Comparable<UsageStatsWrapper> {
 
