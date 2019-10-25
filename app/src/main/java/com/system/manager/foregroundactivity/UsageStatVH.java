@@ -1,4 +1,4 @@
-package com.system.manager.usagestatsmanagertest;
+package com.system.manager.foregroundactivity;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;

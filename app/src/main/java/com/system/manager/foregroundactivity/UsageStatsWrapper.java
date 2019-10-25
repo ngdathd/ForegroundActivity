@@ -1,4 +1,4 @@
-package com.system.manager.usagestatsmanagertest;
+package com.system.manager.foregroundactivity;
 
 import android.app.usage.UsageStats;
 import android.graphics.drawable.Drawable;

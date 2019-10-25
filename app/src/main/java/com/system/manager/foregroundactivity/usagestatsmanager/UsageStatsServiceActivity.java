@@ -1,11 +1,11 @@
-package com.system.manager.usagestatsmanagertest.usagestatsmanager;
+package com.system.manager.foregroundactivity.usagestatsmanager;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
-import com.system.manager.usagestatsmanagertest.R;
+import com.system.manager.foregroundactivity.R;
 
 public class UsageStatsServiceActivity extends AppCompatActivity {
     @Override

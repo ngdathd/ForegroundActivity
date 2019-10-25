@@ -1,4 +1,4 @@
-package com.system.manager.usagestatsmanagertest.usagestatsmanager;
+package com.system.manager.foregroundactivity.usagestatsmanager;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,11 +10,11 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.system.manager.usagestatsmanagertest.R;
-import com.system.manager.usagestatsmanagertest.UsageContract;
-import com.system.manager.usagestatsmanagertest.UsagePresenter;
-import com.system.manager.usagestatsmanagertest.UsageStatAdapter;
-import com.system.manager.usagestatsmanagertest.UsageStatsWrapper;
+import com.system.manager.foregroundactivity.R;
+import com.system.manager.foregroundactivity.UsageContract;
+import com.system.manager.foregroundactivity.UsagePresenter;
+import com.system.manager.foregroundactivity.UsageStatAdapter;
+import com.system.manager.foregroundactivity.UsageStatsWrapper;
 
 import java.util.List;
 
