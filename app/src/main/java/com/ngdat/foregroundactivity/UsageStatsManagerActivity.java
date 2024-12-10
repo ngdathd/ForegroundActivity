@@ -3,6 +3,7 @@ package com.ngdat.foregroundactivity;
 import android.app.AppOpsManager;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.view.MenuItem;
@@ -10,8 +11,12 @@ import android.widget.TextView;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.button.MaterialButton;
+
+import java.util.List;
 
 public class UsageStatsManagerActivity extends AppCompatActivity {
     private MaterialButton buttonRequestUsageStatsManager;
@@ -46,6 +51,14 @@ public class UsageStatsManagerActivity extends AppCompatActivity {
             Intent intent = new Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS);
             startActivity(intent);
         });
+
+        RecyclerView recyclerView = findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        List<ItemActivityInfo> activityList = Utilities.loadActivityListFromUsageStatsManager(this);
+
+        ItemActivityInfoAdapter adapter = new ItemActivityInfoAdapter(activityList);
+        recyclerView.setAdapter(adapter);
     }
 
     @Override
@@ -58,7 +71,15 @@ public class UsageStatsManagerActivity extends AppCompatActivity {
     private void updatePermissionStatus() {
         if (isUsageAccessGranted()) {
             buttonRequestUsageStatsManager.setText("Granted");
-            tvUsageStatsManagerStatus.setText("Data will be refreshed every 3 seconds");
+            tvUsageStatsManagerStatus.setText("Notification will be updated every 3 seconds");
+
+            // Start Foreground Service
+            Intent intent = new Intent(this, UsageStatsManagerService.class);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                startForegroundService(intent);
+            } else {
+                startService(intent);
+            }
         } else {
             buttonRequestUsageStatsManager.setText("Allow");
             tvUsageStatsManagerStatus.setText("You need to grant permission for the app to work");

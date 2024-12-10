@@ -24,8 +24,6 @@ import org.json.JSONObject;
 import java.util.List;
 
 public class AccessibilityServiceExtend extends AccessibilityService {
-    private static final int NOTIFICATION_ID = 1;
-
     private SharedPreferences sharedPreferences;
 
     @Override
@@ -93,7 +91,7 @@ public class AccessibilityServiceExtend extends AccessibilityService {
         createNotificationChannel();
 
         Notification notification = createNotification("Waiting...", "No activity detected yet");
-        startForeground(NOTIFICATION_ID, notification);
+        startForeground(Utilities.NOTIFICATION_1_ID, notification);
     }
 
     private void saveActivityToPreferences(ItemActivityInfo itemActivityInfo) {
@@ -141,10 +139,10 @@ public class AccessibilityServiceExtend extends AccessibilityService {
 
     private void createNotificationChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            String channelId = "demo_channel";
-            CharSequence name = "Foreground Service Channel";
+            String channelId = "accessibility_service_channel";
+            CharSequence name = "AccessibilityService Channel";
             int importance = NotificationManager.IMPORTANCE_LOW;
-            String description = "Channel for foreground service";
+            String description = "Channel for AccessibilityService";
             NotificationChannel channel = new NotificationChannel(channelId, name, importance);
             channel.setDescription(description);
 
@@ -156,7 +154,7 @@ public class AccessibilityServiceExtend extends AccessibilityService {
     }
 
     private Notification createNotification(String appName, String activityName) {
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "demo_channel")
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "accessibility_service_channel")
                 .setContentTitle(appName)
                 .setContentText(activityName)
                 .setSmallIcon(R.drawable.ic_baseline_accessibility)
@@ -174,6 +172,6 @@ public class AccessibilityServiceExtend extends AccessibilityService {
 
             return;
         }
-        notificationManager.notify(NOTIFICATION_ID, notification);
+        notificationManager.notify(Utilities.NOTIFICATION_1_ID, notification);
     }
 }

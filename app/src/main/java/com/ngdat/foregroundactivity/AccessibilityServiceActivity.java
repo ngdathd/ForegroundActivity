@@ -73,7 +73,7 @@ public class AccessibilityServiceActivity extends AppCompatActivity {
     private void updatePermissionStatus() {
         if (isAccessibilityServiceEnabled(this)) {
             buttonRequestAccessibilityService.setText("Granted");
-            tvAccessibilityServiceStatus.setText("Data will be refreshed in real time.");
+            tvAccessibilityServiceStatus.setText("Notification will be updated as soon as there is change.");
         } else {
             buttonRequestAccessibilityService.setText("Allow");
             tvAccessibilityServiceStatus.setText("You need to grant permission for the app to work");
