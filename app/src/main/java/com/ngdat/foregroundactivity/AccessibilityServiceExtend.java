@@ -1,11 +1,21 @@
 package com.ngdat.foregroundactivity;
 
 import android.accessibilityservice.AccessibilityService;
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.ComponentName;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
+import android.os.Build;
 import android.view.accessibility.AccessibilityEvent;
+
+import androidx.core.app.ActivityCompat;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -14,17 +24,13 @@ import org.json.JSONObject;
 import java.util.List;
 
 public class AccessibilityServiceExtend extends AccessibilityService {
-    private static AccessibilityServiceExtend instance;
+    private static final int NOTIFICATION_ID = 1;
 
     private SharedPreferences sharedPreferences;
-    private String currentPackageName = "";
-    private String currentActivityName = "";
-    private String currentAppName = "";
 
     @Override
     protected void onServiceConnected() {
         super.onServiceConnected();
-        instance = this;
         sharedPreferences = getSharedPreferences(Utilities.PREFS_NAME_AccessibilityService, MODE_PRIVATE);
     }
 
@@ -37,16 +43,33 @@ public class AccessibilityServiceExtend extends AccessibilityService {
                     event.getClassName().toString()
             );
 
-            currentPackageName = componentName.getPackageName();
-            currentActivityName = componentName.getClassName();
-
-            // Get app name
+            String currentPackageName = componentName.getPackageName();
+            String currentActivityName = componentName.flattenToShortString();
+            String currentAppName;
             try {
-                ApplicationInfo appInfo = getPackageManager().getApplicationInfo(currentPackageName, 0);
-                currentAppName = getPackageManager().getApplicationLabel(appInfo).toString();
+                PackageManager pm = getPackageManager();
+                ApplicationInfo appInfo = pm.getApplicationInfo(currentPackageName, 0);
+                currentAppName = pm.getApplicationLabel(appInfo).toString();
             } catch (PackageManager.NameNotFoundException e) {
-                currentAppName = "Unknown";
+                // Try fallback with Launch Intent
+                Intent launchIntent = getPackageManager().getLaunchIntentForPackage(currentPackageName);
+                if (launchIntent != null) {
+                    ResolveInfo resolveInfo = getPackageManager().resolveActivity(launchIntent, 0);
+                    if (resolveInfo != null) {
+                        currentAppName = resolveInfo.loadLabel(getPackageManager()).toString();
+                    } else {
+                        currentAppName = "Unknown";
+                    }
+                } else {
+                    currentAppName = "Unknown";
+                }
             }
+
+            if (Utilities.WhiteList.contains(currentPackageName)) {
+                return;
+            }
+
+            updateNotification(currentAppName, currentActivityName);
 
             // Get the current timestamp
             long startTime = System.currentTimeMillis();
@@ -64,25 +87,37 @@ public class AccessibilityServiceExtend extends AccessibilityService {
     }
 
     @Override
-    public void onDestroy() {
-        super.onDestroy();
-        instance = null;
+    public void onCreate() {
+        super.onCreate();
+
+        createNotificationChannel();
+
+        Notification notification = createNotification("Waiting...", "No activity detected yet");
+        startForeground(NOTIFICATION_ID, notification);
     }
 
     private void saveActivityToPreferences(ItemActivityInfo itemActivityInfo) {
+        // Load the current list from SharedPreferences
         List<ItemActivityInfo> activityList = Utilities.loadActivityListFromAccessibilityService(sharedPreferences);
 
-        // If the list already contains the same activity, update its end time
-        for (ItemActivityInfo item : activityList) {
-            if (item.getActivityName().equals(itemActivityInfo.getActivityName())) {
-                item.setEndTime(System.currentTimeMillis());
-                saveActivityListToPreferences(activityList);
-                return;
+        // Remove any existing item with the same activity name
+        for (int i = 0; i < activityList.size(); i++) {
+            if (activityList.get(i).getActivityName().equals(itemActivityInfo.getActivityName())) {
+                activityList.remove(i);
+                break; // Exit the loop after removing the item
             }
         }
 
-        // Otherwise, add a new activity to the list
-        activityList.add(itemActivityInfo);
+        // Add the new item to the top of the list
+        itemActivityInfo.setEndTime(System.currentTimeMillis());
+        activityList.add(0, itemActivityInfo);
+
+        // Keep only the 20 most recent items
+        if (activityList.size() > 20) {
+            activityList = activityList.subList(0, 20);
+        }
+
+        // Save the updated list back to SharedPreferences
         saveActivityListToPreferences(activityList);
     }
 
@@ -104,19 +139,41 @@ public class AccessibilityServiceExtend extends AccessibilityService {
         sharedPreferences.edit().putString(Utilities.PREFS_KEY_AccessibilityService, jsonArray.toString()).apply();
     }
 
-    public static AccessibilityServiceExtend getInstance() {
-        return instance;
+    private void createNotificationChannel() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            String channelId = "demo_channel";
+            CharSequence name = "Foreground Service Channel";
+            int importance = NotificationManager.IMPORTANCE_LOW;
+            String description = "Channel for foreground service";
+            NotificationChannel channel = new NotificationChannel(channelId, name, importance);
+            channel.setDescription(description);
+
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            if (notificationManager != null) {
+                notificationManager.createNotificationChannel(channel);
+            }
+        }
     }
 
-    public String getForegroundPackageName() {
-        return currentPackageName;
+    private Notification createNotification(String appName, String activityName) {
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "demo_channel")
+                .setContentTitle(appName)
+                .setContentText(activityName)
+                .setSmallIcon(R.drawable.ic_baseline_accessibility)
+                .setPriority(NotificationCompat.PRIORITY_LOW)
+                .setOngoing(true);
+        return builder.build();
     }
 
-    public String getForegroundActivityName() {
-        return currentActivityName;
-    }
+    private void updateNotification(String appName, String activityName) {
+        Notification notification = createNotification(appName, activityName);
 
-    public String getForegroundAppName() {
-        return currentAppName;
+        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
+        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.POST_NOTIFICATIONS)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            return;
+        }
+        notificationManager.notify(NOTIFICATION_ID, notification);
     }
 }

@@ -4,7 +4,6 @@ import android.accessibilityservice.AccessibilityServiceInfo;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.view.MenuItem;
@@ -75,14 +74,6 @@ public class AccessibilityServiceActivity extends AppCompatActivity {
         if (isAccessibilityServiceEnabled(this)) {
             buttonRequestAccessibilityService.setText("Granted");
             tvAccessibilityServiceStatus.setText("Data will be refreshed in real time.");
-
-            // Khởi chạy Foreground Service
-            Intent serviceIntent = new Intent(this, AccessibilityServiceMonitorService.class);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                startForegroundService(serviceIntent); // Với Android 8.0 trở lên
-            } else {
-                startService(serviceIntent); // Với các phiên bản thấp hơn
-            }
         } else {
             buttonRequestAccessibilityService.setText("Allow");
             tvAccessibilityServiceStatus.setText("You need to grant permission for the app to work");
@@ -112,13 +103,5 @@ public class AccessibilityServiceActivity extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        // Dừng Service nếu không cần nữa
-        Intent serviceIntent = new Intent(this, AccessibilityServiceMonitorService.class);
-        stopService(serviceIntent);
     }
 }

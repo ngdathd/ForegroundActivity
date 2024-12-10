@@ -6,12 +6,11 @@ import android.app.NotificationManager;
 import android.app.Service;
 import android.content.Intent;
 import android.os.Build;
-import android.os.Handler;
 import android.os.IBinder;
 
 import androidx.core.app.NotificationCompat;
 
-public class AccessibilityServiceMonitorService extends Service {
+public class UsageStatsManagerService extends Service {
     private static final int NOTIFICATION_ID = 1;
 
     @Override
@@ -57,7 +56,7 @@ public class AccessibilityServiceMonitorService extends Service {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "demo_channel")
                 .setContentTitle(appName)
                 .setContentText(activityName + " - " + packageName)
-                .setSmallIcon(R.drawable.ic_baseline_notifications_active)
+                .setSmallIcon(R.drawable.ic_baseline_accessibility)
                 .setPriority(NotificationCompat.PRIORITY_LOW)
                 .setOngoing(true);
         return builder.build();

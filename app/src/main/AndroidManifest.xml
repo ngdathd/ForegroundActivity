@@ -2,11 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK" />
     <uses-permission
         android:name="android.permission.PACKAGE_USAGE_STATS"
         tools:ignore="ProtectedPermissions" />
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK" />
 
     <application
         android:allowBackup="true"
@@ -19,7 +20,6 @@
         android:theme="@style/Theme.ForegroundActivity"
         tools:targetApi="31">
 
-        <!-- MainActivity -->
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -29,13 +29,12 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".UsageStatsManagerActivity" />
-
         <activity android:name=".AccessibilityServiceActivity" />
 
         <service
             android:name=".AccessibilityServiceExtend"
             android:exported="true"
+            android:foregroundServiceType="mediaPlayback"
             android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
             <intent-filter>
                 <action android:name="android.accessibilityservice.AccessibilityService" />
@@ -46,11 +45,12 @@
                 android:resource="@xml/accessibility_service_config" />
         </service>
 
+        <activity android:name=".UsageStatsManagerActivity" />
+
         <service
-            android:name=".AccessibilityServiceMonitorService"
+            android:name=".UsageStatsManagerService"
             android:exported="false"
-            android:foregroundServiceType="mediaPlayback"
-            tools:ignore="ForegroundServicePermission" />
+            android:foregroundServiceType="mediaPlayback" />
 
     </application>
 

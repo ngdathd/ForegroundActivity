@@ -7,11 +7,17 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Utilities {
     public static final String PREFS_NAME_AccessibilityService = "AccessibilityService_ActivityHistory";
     public static final String PREFS_KEY_AccessibilityService = "AccessibilityService_ActivityList";
+    public static final Set<String> WhiteList = new HashSet<>(Arrays.asList(
+            "com.android.systemui"
+    ));
 
     public static List<ItemActivityInfo> loadActivityListFromAccessibilityService(SharedPreferences sharedPreferences) {
         String json = sharedPreferences.getString(PREFS_KEY_AccessibilityService, "[]");
