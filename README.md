@@ -3,10 +3,10 @@
 
 ## Introduction to App ForegroundActivity
 
-| ![](https://github.com/user-attachments/assets/8ae3873a-ed39-4279-9e0d-0b7b6a16d8ea)| - The application requires post notification permission.<br/>- The application requires post notification permission.                   |
-|-------------------------|-------------------------------------|
+| | - The application requires post notification permission.<br/>- The application requires post notification permission.                   |
+|------------------------|-------------------------------------|
 
-![](https://github.com/user-attachments/assets/8ae3873a-ed39-4279-9e0d-0b7b6a16d8ea =250x)
+![](https://github.com/user-attachments/assets/8ae3873a-ed39-4279-9e0d-0b7b6a16d8ea)
 
 <table>
   <tr>
