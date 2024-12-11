@@ -5,6 +5,10 @@
 
 | https://github.com/user-attachments/assets/8ae3873a-ed39-4279-9e0d-0b7b6a16d8ea                 | - The application requires post notification permission.<br/>- The application requires post notification permission.                   |
 |-------------------------|-------------------------------------|
+
+<img src="https://github.com/user-attachments/assets/8ae3873a-ed39-4279-9e0d-0b7b6a16d8ea.mp4" width="300" height="300" />
+<iframe src="https://github.com/user-attachments/assets/8ae3873a-ed39-4279-9e0d-0b7b6a16d8ea" width="480" height="270"  class="giphy-embed" allowFullScreen></iframe>
+
 <table>
   <tr>
     <td style="width: 30%; text-align: center;">
