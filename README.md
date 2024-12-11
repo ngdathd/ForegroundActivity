@@ -3,15 +3,13 @@
 
 ## Introduction to App ForegroundActivity
 
-
-https://github.com/user-attachments/assets/8ae3873a-ed39-4279-9e0d-0b7b6a16d8ea
-
-
+| https://github.com/user-attachments/assets/8ae3873a-ed39-4279-9e0d-0b7b6a16d8ea                 | - The application requires post notification permission.<br/>- The application requires post notification permission.                   |
+|-------------------------|-------------------------------------|
 <table>
   <tr>
     <td style="width: 30%; text-align: center;">
       <video controls style="max-width: 100%; border: 1px solid #ddd; border-radius: 4px; padding: 5px;">
-        <source src="./demo-video.mp4" type="video/mp4">
+        <source src="https://github.com/user-attachments/assets/8ae3873a-ed39-4279-9e0d-0b7b6a16d8ea" type="video/mp4">
         Your browser does not support the video tag.
       </video>
    </td>
