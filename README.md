@@ -3,6 +3,10 @@
 
 ## Introduction to App ForegroundActivity
 
+
+https://github.com/user-attachments/assets/8ae3873a-ed39-4279-9e0d-0b7b6a16d8ea
+
+
 <table>
   <tr>
     <td style="width: 30%; text-align: center;">
