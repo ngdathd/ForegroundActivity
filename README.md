@@ -16,11 +16,8 @@ https://github.com/user-attachments/assets/8ae3873a-ed39-4279-9e0d-0b7b6a16d8ea
 <table>
   <tr>
     <td style="width: 30%; text-align: center;">
-      <video controls style="max-width: 100%; border: 1px solid #ddd; border-radius: 4px; padding: 5px;">
-        <source src="https://github.com/user-attachments/assets/8ae3873a-ed39-4279-9e0d-0b7b6a16d8ea" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
-   </td>
+      ![](https://github.com/user-attachments/assets/8ae3873a-ed39-4279-9e0d-0b7b6a16d8ea)
+    </td>
     <td style="width: 70%; vertical-align: top; padding-left: 20px;">
       <p style="font-size: 15px;">- The application requires post notification permission.</p>
       <p style="font-size: 15px;">- In <code>MainActivity</code>, I created 2 <code>CardView</code> elements to display basic information about the two methods. When you press the <strong>"More"</strong> button, you will navigate to the details of each method.</p>
