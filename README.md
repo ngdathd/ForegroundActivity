@@ -5,10 +5,10 @@
 
 <table>
   <tr>
-    <td style="width: 30%; text-align: center;">
+    <td style="width: 35%; text-align: center;">
       <img src="./img.gif" alt="GIF Image" style="max-width: 100%; border: 1px solid #ddd; border-radius: 4px; padding: 5px;">
     </td>
-    <td style="width: 70%; vertical-align: top; padding-left: 20px;">
+    <td style="width: 65%; vertical-align: top; padding-left: 20px;">
       <p style="font-size: 15px;">- The application requires post notification permission.</p>
       <p style="font-size: 15px;">- In <code>MainActivity</code>, I created 2 <code>CardView</code> elements to display basic information about the two methods. When you press the <strong>"More"</strong> button, you will navigate to the details of each method.</p>
       <p style="font-size: 15px;">- Each method's screen consists of two parts:</p>
