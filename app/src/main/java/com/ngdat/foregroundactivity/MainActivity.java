@@ -45,11 +45,6 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this, AccessibilityServiceActivity.class);
             startActivity(intent);
         });
-
-        MaterialButton buttonWisomAccessDots = findViewById(R.id.button_wisom_access_dots);
-        buttonWisomAccessDots.setOnClickListener(v ->
-                Toast.makeText(MainActivity.this, "Clicked: WisomAccessDots", Toast.LENGTH_SHORT).show()
-        );
     }
 
     @Override
