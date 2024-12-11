@@ -3,8 +3,10 @@
 
 ## Introduction to App ForegroundActivity
 
-|![](https://github.com/user-attachments/assets/8ae3873a-ed39-4279-9e0d-0b7b6a16d8ea)| - The application requires post notification permission.<br/>- The application requires post notification permission.                   |||||||||||
-|------------------------|-------------------------------------|-|-|-|-|-|-|-|-|-|-|
+|||||||||||||
+|------------------------|-------------------------------|-|-|-|-|-|-|-|-|-|-|
+| ![](https://github.com/user-attachments/assets/8ae3873a-ed39-4279-9e0d-0b7b6a16d8ea) | - The application requires post notification permission.| - In <code>MainActivity</code>, I created 2 <code>CardView</code> elements to display basic information about the two methods. When you press the <strong>"More"</strong> button, you will navigate to the details of each method.|||||||||||
+
 
 ![](https://github.com/user-attachments/assets/8ae3873a-ed39-4279-9e0d-0b7b6a16d8ea)
 
