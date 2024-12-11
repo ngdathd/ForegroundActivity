@@ -6,7 +6,10 @@
 <table>
   <tr>
     <td style="width: 30%; text-align: center;">
-      <img src="./img.gif" alt="Ảnh GIF" style="max-width: 100%; border: 1px solid #ddd; border-radius: 4px; padding: 5px;">
+      <video controls style="max-width: 100%; border: 1px solid #ddd; border-radius: 4px; padding: 5px;">
+        <source src="./demo-video.mp4" type="video/mp4">
+        Trình duyệt của bạn không hỗ trợ thẻ video.
+      </video>
     </td>
     <td style="width: 70%; vertical-align: top; padding-left: 20px;">
       <p style="font-size: 15px;">- Ứng dụng yêu cầu cấp quyền post notification.</p>
