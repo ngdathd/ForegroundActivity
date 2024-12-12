@@ -3,30 +3,9 @@
 
 ## Introduction to App ForegroundActivity
 
-|||
-|-|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| ![](https://github.com/user-attachments/assets/8ae3873a-ed39-4279-9e0d-0b7b6a16d8ea) | - The application requires post notification permission.<br/>- In <code>MainActivity</code>, I created 2 <code>CardView</code> elements to display basic information about the two methods. When you press the <strong>"More"</strong> button, you will navigate to the details of each method.|
-
-
-![](https://github.com/user-attachments/assets/8ae3873a-ed39-4279-9e0d-0b7b6a16d8ea)
-
-<table>
-  <tr>
-    <td style="width: 30%; text-align: center;">
-      ![](https://github.com/user-attachments/assets/8ae3873a-ed39-4279-9e0d-0b7b6a16d8ea)
-    </td>
-    <td style="width: 70%; vertical-align: top; padding-left: 20px;">
-      <p style="font-size: 15px;">- The application requires post notification permission.</p>
-      <p style="font-size: 15px;">- In <code>MainActivity</code>, I created 2 <code>CardView</code> elements to display basic information about the two methods. When you press the <strong>"More"</strong> button, you will navigate to the details of each method.</p>
-      <p style="font-size: 15px;">- Each method's screen consists of two parts:</p>
-      <ul style="font-size: 15px;">
-        <li><strong>Header Section:</strong> Introduction, a button to request permissions, and a notification displaying the content of the current activity</li>
-        <li><strong>List Section:</strong> Displays a list of activities</li>
-      </ul>
-      <p style="font-size: 15px;">- After granting the required permissions, the application will create a notification showing the activity currently in the foreground. You can switch to another application to test this feature.</p>
-    </td>
-  </tr>
-</table>
+| Demo | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+|------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ![](https://github.com/user-attachments/assets/8ae3873a-ed39-4279-9e0d-0b7b6a16d8ea) | - The application requires post notification permission.<br/>- In `MainActivity`, I created 2 `CardView` elements to display basic information about the two methods. When you press the **"More"** button, you will navigate to the details of each method.<br/>- Each method's screen consists of two parts:<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ **Header Section:** Introduction, a button to request permissions, and a notification displaying the content of the current activity.<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ **List Section:** Displays a list of activities.<br/>- After granting the required permissions, the application will create a notification showing the activity currently in the foreground. You can switch to another application to test this feature. |
 
 ## Method 1: Using `UsageStatsManager`
 
