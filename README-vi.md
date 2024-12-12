@@ -3,26 +3,9 @@
 
 ## Giới thiệu ứng dụng của tôi
 
-<table>
-  <tr>
-    <td style="width: 30%; text-align: center;">
-      <video controls style="max-width: 100%; border: 1px solid #ddd; border-radius: 4px; padding: 5px;">
-        <source src="https://github.com/user-attachments/assets/8ae3873a-ed39-4279-9e0d-0b7b6a16d8ea.mp4" type="video/mp4">
-        Trình duyệt của bạn không hỗ trợ thẻ video.
-      </video>
-    </td>
-    <td style="width: 70%; vertical-align: top; padding-left: 20px;">
-      <p style="font-size: 15px;">- Ứng dụng yêu cầu cấp quyền post notification.</p>
-      <p style="font-size: 15px;">- Ở <code>MainActivity</code>, tôi tạo 2 <code>CardView</code> để hiển thị thông tin cơ bản của 2 cách. Khi bấm nút <strong>"More"</strong>, bạn sẽ vào từng cách.</p>
-      <p style="font-size: 15px;">- Màn hình của mỗi cách có 2 phần:</p>
-      <ul style="font-size: 15px;">
-        <li><strong>Phần Header:</strong> Giới thiệu, nút bấm cấp quyền và thông báo về nội dung notification</li>
-        <li><strong>Phần List:</strong> Danh sách các activity</li>
-      </ul>
-      <p style="font-size: 15px;">- Sau khi cấp đủ quyền, ứng dụng sẽ tạo notification có nội dung là activity đang foreground. Bạn có thể chuyển sang ứng dụng khác để kiểm tra.</p>
-    </td>
-  </tr>
-</table>
+| Chạy thử | Quyền                                                                                                                     | Mô tả                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+|----------|---------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|![](https://github.com/user-attachments/assets/8ae3873a-ed39-4279-9e0d-0b7b6a16d8ea)|- Ứng dụng yêu cầu cấp quyền post notification.<br/>- Khai báo quyền trong `AndroidManifest.xml` quyền `POST_NOTIFICATIONS`|- Ở `MainActivity`, tôi tạo 2 `CardView` để hiển thị thông tin cơ bản của 2 cách. Khi bấm nút **"More"**, bạn sẽ vào từng cách.<br/>- Màn hình của mỗi cách có 2 phần:<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ **Phần Header:** Giới thiệu, nút bấm cấp quyền và thông báo về nội dung notification.<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ **Phần List:** Danh sách các activity.<br/>- Sau khi cấp đủ quyền, ứng dụng sẽ tạo notification có nội dung là activity đang foreground. Bạn có thể chuyển sang ứng dụng khác để kiểm tra.|
 
 ## Cách 1: Sử dụng `UsageStatsManager`
 
