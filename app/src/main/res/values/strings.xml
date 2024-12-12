@@ -1,25 +1,3 @@
 <resources>
-    <string name="app_name">UsageStatsManagerTest</string>
-    <string name="permission_message">You need to grant access to usage stats\n GRANT PERMISSION</string>
-    <string name="last_time_used_never">Last time used: never</string>
-    <string name="last_time_used">Last time used: %1$s</string>
-
-    <string name="accessibility_service_description">Get foreground activity information</string>
-    <string name="open_accessibility_settings">Open accessibility settings</string>
-    <string name="hint_package">Insert a package name</string>
-    <string name="hint_class">Insert a class name</string>
-    <string name="example_package">com.android.settings</string>
-    <string name="example_class">RingerVolumePreferenceDialogActivity</string>
-    <string name="test">Test</string>
-    <string name="open">Open</string>
-    <string name="launch">Launch</string>
-    <string name="toggle_service">Toggle service</string>
-    <string name="sharedprefs_name">406bd0bb-eb1f-4dd9-8eef-cef50538a4cb</string>
-    <string name="sharedprefs_key1">db4b8b18-e20b-4142-bafa-0f1980501ecd</string>
-    <string name="sharedprefs_key2">37b297a6-4539-469f-bb5d-483bf4d7e5a0</string>
-    <string name="sharedprefs_key3">cd0f1066-f058-4c12-8f00-fb76c20a7753</string>
-    <string name="usage">Before using this app, please allow access to Accessibility Service by clicking below:</string>
-    <string name="usage2">The switch in the action bar activates or not the use of toasts to display the current activity package.</string>
-    <string name="usage3">Here you can try to launch an intent for the following package and class names. Default values open Huawei settings.</string>
-
+    <string name="app_name">ForegroundActivity</string>
 </resources>

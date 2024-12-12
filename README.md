@@ -1,28 +1,163 @@
-## ForegroundActivity
-Get foreground activity using AccessibilityService or UsageStatsManager
 
-## AccessibilityService
+# Get the List of Activities in the Foreground State
 
-Warning: Google Play violation
+## Introduction to App ForegroundActivity
 
-Google has threatened to remove apps from the Play Store if they use accessibility services for non-accessibility purposes. However, this is reportedly being reconsidered.
+| Demo | Permission                                                                                                                                                   | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+|------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|![](https://github.com/user-attachments/assets/8ae3873a-ed39-4279-9e0d-0b7b6a16d8ea)|- The application requires post notification permission.<br/>- Declare permissions in `AndroidManifest.xml` permission `POST_NOTIFICATIONS`|- In `MainActivity`, I created 2 `CardView` elements to display basic information about the two methods. When you press the **"More"** button, you will navigate to the details of each method.<br/>- Each method's screen consists of two parts:<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ **Header Section:** Introduction, a button to request permissions, and a notification displaying the content of the current activity.<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+ **List Section:** Displays a list of activities.<br/>- After granting the required permissions, the application will create a notification showing the activity currently in the foreground. You can switch to another application to test this feature.|
 
-### Use an [AccessibilityService](https://developer.android.com/reference/android/accessibilityservice/AccessibilityService.html)
-* You can detect the currently active window by using an [AccessibilityService](https://developer.android.com/reference/android/accessibilityservice/AccessibilityService.html).
-* In the [onAccessibilityEvent](https://developer.android.com/reference/android/accessibilityservice/AccessibilityService.html#onAccessibilityEvent(android.view.accessibility.AccessibilityEvent)) callback, check for the [TYPE_WINDOW_STATE_CHANGED](https://developer.android.com/reference/android/view/accessibility/AccessibilityEvent.html#TYPE_WINDOW_STATE_CHANGED) [event type](https://developer.android.com/reference/android/view/accessibility/AccessibilityEvent.html#getEventType()) to determine when the current window changes.
-* Check if the window is an activity by calling [PackageManager.getActivityInfo()](https://developer.android.com/reference/android/content/pm/PackageManager.html#getActivityInfo(android.content.ComponentName,%20int)).
-### Benefits
-* Tested and working in Android 2.2 (API 8) through Android 7.1 (API 25).
-* Doesn't require polling.
-* Doesn't require the [GET_TASKS](https://developer.android.com/reference/android/Manifest.permission.html#GET_TASKS) permission.
+## Method 1: Using `UsageStatsManager`
+
+### Description
+`UsageStatsManager` can be used to retrieve the usage history of applications, including information about the time and frequency of app usage on the device through the `queryUsageStats` method. The most recently used application is highly likely to be in the **foreground** state. Periodically, call the `queryUsageStats` method to update the data.
+
+### Advantages
+- Easy to implement.
+- Does not require access to personal information.
+
 ### Disadvantages
-* Each user must enable the service in Android's accessibility settings.
-* The service is always running.
-* When a user tries to enable the [AccessibilityService](https://developer.android.com/reference/android/accessibilityservice/AccessibilityService.html), they can't press the OK button if an app has placed an overlay on the screen. Some apps that do this are Velis Auto Brightness and Lux. This can be confusing because the user might not know why they can't press the button or how to work around it.
-* The [AccessibilityService](https://developer.android.com/reference/android/accessibilityservice/AccessibilityService.html) won't know the current activity until the first **change** of activity.
+- Data is updated with a delay (not in real time).
 
-## UsageStatsManager
-* This technique uses the UsageStatsManager API introduced in Android 5.0 to gain access to a device’s usage history and statistics.
-* The malware queries the usage statistics of all the applications for the past two seconds and then computes the most recent activity.
-* The malware requests the user to grant a system-level permission, “android.permission.PACKAGE_USAGE_STATS", to use this API.
-* This permission can only be granted through the Settings application. In order to overcome this, the malware uses social engineering by programmatically starting the usage access permission activity while masquerading as Google Chrome by mimicking the app’s icon and name.
+### Google Policy Notes
+- Using `UsageStatsManager` requires declaring the `PACKAGE_USAGE_STATS` permission. This permission does not require manual user consent but must be enabled in **Settings > Apps > Special app access > Usage access**.
+- The application must be transparent with users about how this data is used and comply with Google Play’s privacy policies.
+
+### Implementation Steps
+<details>
+<summary>Click to expand</summary>
+
+1. **Declare permissions in `AndroidManifest.xml`:**
+   ```xml
+   <uses-permission
+        android:name="android.permission.PACKAGE_USAGE_STATS"
+        tools:ignore="ProtectedPermissions" />
+   ```
+
+2. **Check permission in the code:**
+   ```java
+   private boolean isUsageAccessGranted() {
+        AppOpsManager appOpsManager = (AppOpsManager) getSystemService(Context.APP_OPS_SERVICE);
+        int mode = appOpsManager.checkOpNoThrow(AppOpsManager.OPSTR_GET_USAGE_STATS,
+                android.os.Process.myUid(), getPackageName());
+        return mode == AppOpsManager.MODE_ALLOWED;
+    }
+   ```
+
+3. **Query information using `UsageStatsManager`:**
+   ```java
+   UsageStatsManager usageStatsManager =
+           (UsageStatsManager) context.getSystemService(Context.USAGE_STATS_SERVICE);
+   
+   if (usageStatsManager == null) {
+       return new ArrayList<>(); // Return empty list if UsageStatsManager is unavailable
+   }
+   
+   // Query usage stats for the last 24 hours
+   List<UsageStats> usageStatsList = usageStatsManager.queryUsageStats(
+           UsageStatsManager.INTERVAL_DAILY,
+           currentTime - (24 * 60 * 60 * 1000), // Start time (24 hours ago)
+           currentTime // End time (now)
+   );
+
+   if (usageStatsList == null || usageStatsList.isEmpty()) {
+       return new ArrayList<>(); // Return empty list if no data is available
+   }
+   ```
+</details>
+
+---
+
+## Method 2: Using `AccessibilityService`
+
+### Description
+`AccessibilityService` has the ability to monitor apps in the **foreground**, allowing you to retrieve app information via the `TYPE_WINDOW_STATE_CHANGED` event.
+
+### Advantages
+- Data is updated in real-time.
+
+### Disadvantages
+- Complex to implement.
+- Granted permissions can be revoked when the application is closed.
+- When granting `AccessibilityService` access, other information like text content, gesture behavior, etc., may also be accessed.
+
+### Google Policy Notes
+- Using `AccessibilityService` requires the app to clearly explain the reason for requesting this permission and not misuse it to collect unrelated data.
+- According to Google Play policy, this permission is only accepted if it serves a purpose that aids the user, such as supporting disabled users.
+- Misuse of this permission could result in the app being removed from Google Play.
+
+### Implementation Steps
+<details>
+<summary>Click to expand</summary>
+
+1. **Create a class that extends `AccessibilityService`:**
+   ```java
+   public class AccessibilityServiceExtend extends AccessibilityService {
+       @Override
+       public void onAccessibilityEvent(AccessibilityEvent event) {
+           if (event.getEventType() == AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED) {
+               // Get the package name and activity name
+               ComponentName componentName = new ComponentName(
+                       event.getPackageName().toString(),
+                       event.getClassName().toString()
+               );
+   
+               String currentPackageName = componentName.getPackageName();
+               String currentActivityName = componentName.flattenToShortString();
+           }
+       }
+
+       @Override
+       public void onInterrupt() {
+       }
+   }
+   ```
+
+2. **Declare the service in `AndroidManifest.xml`:**
+   ```xml
+   <!--android:foregroundServiceType="mediaPlayback" is used for the post notification feature-->
+   <service
+        android:name=".AccessibilityServiceExtend"
+        android:exported="true"
+        android:foregroundServiceType="mediaPlayback"
+        android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
+        <intent-filter>
+            <action android:name="android.accessibilityservice.AccessibilityService" />
+        </intent-filter>
+
+        <meta-data
+            android:name="android.accessibilityservice"
+            android:resource="@xml/accessibility_service_config" />
+   </service>
+   ```
+
+3. **Configure the file `res/xml/accessibility_config.xml`:**
+   ```xml
+   <accessibility-service xmlns:android="http://schemas.android.com/apk/res/android"
+        android:accessibilityEventTypes="typeWindowStateChanged"
+        android:accessibilityFeedbackType="feedbackGeneric"
+        android:canRetrieveWindowContent="false"
+        android:description="@string/app_name"
+        android:notificationTimeout="100" />
+   ```
+
+4. **Activate the service in the device’s Accessibility settings:**
+   - The user needs to enable the service in **Settings > Accessibility > ForegroundActivity**.
+
+</details>
+
+---
+
+## Comparison of the 2 Methods
+
+| Feature                 | UsageStatsManager                   | AccessibilityService                  |
+|-------------------------|-------------------------------------|---------------------------------------|
+| **Setup**               | Easy                            | Complex                              |
+| **Update Frequency**  | Delayed                          | Real-time                   |
+| **Permission Scope**      | Does not require sensitive access       | Requires high and sensitive permissions|
+| **Accuracy**        | Depends on query timing   | High accuracy via system events    |
+| **Policy Compliance** | Requires transparent declaration         | Strict requirements to avoid misuse      |
+
+---
+
+**Note:** The choice of method depends on project requirements and the priority among performance, security, and compliance with Google’s policies.
